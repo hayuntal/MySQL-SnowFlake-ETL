@@ -1,3 +1,5 @@
+import logging
+
 from snowflake import connector
 from src.utils import *
 
@@ -22,7 +24,7 @@ class SnowFlakeClient:
         }
 
         self.conn = connector.connect(**conn_params)
-        print('Success connection to SnowFlake')
+        logging.info('Success connection to SnowFlake')
 
     def create_dim_tables(self, dict_dataframes):
         cur = self.conn.cursor()
@@ -39,7 +41,8 @@ class SnowFlakeClient:
                         CREATE TABLE IF NOT EXISTS {self.database}.{self.schema}.{table_name} ({columns_datatypes});  
                         """
             cur.execute(query)
-        print('Created dimention tables')
+
+        logging.info('Created dimention tables')
         cur.close()
         self.conn.commit()
 
@@ -63,7 +66,7 @@ class SnowFlakeClient:
 
             cur.execute(query)
 
-        print('Inserted values into dimention tables')
+        logging.info('Inserted values into dimention tables')
         cur.close()
         self.conn.commit()  
     
@@ -74,8 +77,7 @@ class SnowFlakeClient:
          (PATIENTID INT NOT NULL, VISITINFOID INT NOT NULL, TESTID INT NOT NULL);'
         cur.execute(query)
 
-        print('Created fact table')
-
+        logging.info('Created fact table')
         cur.close()
         self.conn.commit()  
     
@@ -90,7 +92,7 @@ class SnowFlakeClient:
         insert_fact_values = f'INSERT INTO FACTTABLE (PATIENTID, VISITINFOID, TESTID) VALUES {values};'
         cur.execute(insert_fact_values)
 
-        print('Inserted values into fact table')
+        logging.info('Inserted values into fact table')
 
         cur.close()
         self.conn.commit()  

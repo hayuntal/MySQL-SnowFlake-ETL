@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
+import logging
 
 from utils import *
 from config.config import *
@@ -29,7 +30,7 @@ def extract():
         df = pd.DataFrame(data, columns=columns)
         dict_stg_df[table] = df
 
-    print("Extraction completed.")
+    logging.info("Extraction completed.")
     return dict_stg_df
 
 def transform(stg_dfs):
@@ -46,7 +47,7 @@ def transform(stg_dfs):
 
         dict_dataframes[table_name] = processed_df
 
-    print("Transformation completed.")
+    logging.info("Transformation completed.")
     return dict_dataframes
 
 def load(dict_dataframes):
@@ -57,7 +58,7 @@ def load(dict_dataframes):
     client_sf.insert_data(dict_dataframes)
     client_sf.create_fact_table()
     client_sf.insert_fact_values()
-    print("Loading completed.")
+    logging.info("Loading completed.")
 
 def run_etl():
 

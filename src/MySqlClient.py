@@ -1,5 +1,6 @@
 import mysql.connector
 import os
+import logging
 
 from mysql.connector import Error
 
@@ -22,12 +23,14 @@ class MySqlClient:
             )
             if self.connection.is_connected():
                 db_info = self.connection.get_server_info()
-                print(f"Successfully connected to MySQL Server version {db_info}")
+                logging.info(f"Successfully connected to MySQL Server version {db_info}")
+
                 cursor = self.connection.cursor()
                 cursor.execute("select database();")
                 record = cursor.fetchone()
         except Error as e:
-            print("Error while connecting to MySQL", e)
+            logging.info("Error while connecting to MySQL", e)
+
 
     def fetch_data(self, table):
         """ Execute a query and return the results """
@@ -37,7 +40,7 @@ class MySqlClient:
             result = cursor.fetchall()  # Fetch all rows of a query result
             return result
         except Error as e:
-            print(f"Error: {e}")
+            logging.info(f"Error: {e}")
             return None
 
     def fetch_table_names(self):
@@ -47,7 +50,7 @@ class MySqlClient:
             tables = cursor.fetchall()
             return [table[0] for table in tables]  # Extract table names from tuples
         except Error as e:
-            print("Error fetching table names:", e)
+            logging.info("Error fetching table names:", e)
             return []
 
     def fetch_column_names(self, table_name):
@@ -67,5 +70,5 @@ class MySqlClient:
             columns = cursor.fetchall()
             return [column[0] for column in columns]
         except Error as e:
-            print(f"Error fetching column names: {e}")
+            logging.info(f"Error fetching column names: {e}")
             return []
