@@ -9,12 +9,12 @@ The data includes 3 csv files:
 #### Patients
 This file contains demographic and personal information about the patients. Here’s a breakdown of its typical columns:
 
-- **Name (VARCHAR(255))**: The first name of the patient.
-- **Family (VARCHAR(255))**: The family name or surname of the patient.
+- **Name (VARCHAR)**: The first name of the patient.
+- **Family (VARCHAR)**: The family name or surname of the patient.
 - **ID (INT)**: A unique identifier for each patient, presumably a national ID or medical record number.
 - **Birthdate (DATETIME)**: The patient's date of birth.
-- **City (VARCHAR(255))**: The city where the patient lives.
-- **Region (VARCHAR(255))**: The regional area or district where the patient resides.
+- **City (VARCHAR)**: The city where the patient lives.
+- **Region (VARCHAR)**: The regional area or district where the patient resides.
 
 #### Tests
 This file records the results of various medical tests that patients have undergone. The columns in this file might include:
