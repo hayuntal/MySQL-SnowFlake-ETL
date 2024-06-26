@@ -19,7 +19,7 @@ This file contains demographic and personal information about the patients. Here
 #### Tests
 This file records the results of various medical tests that patients have undergone. The columns in this file might include:
 
- **Sugar (FLOAT)**: Measurement of sugar levels in the blood.
+- **Sugar (FLOAT)**: Measurement of sugar levels in the blood.
 - **Fe (FLOAT)**: Measurement of iron (Fe) levels in the blood.
 - **Whitcells (FLOAT)**: Count of white blood cells.
 - **Redcells (FLOAT)**: Count of red blood cells.
