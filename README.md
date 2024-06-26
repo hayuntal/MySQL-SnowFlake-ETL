@@ -7,7 +7,7 @@ This project automates an ETL (Extract, Transform, Load) process from a source s
 The data includes 3 csv files:
 
 #### Patients
-This file contains demographic and personal information about the patients. Here’s a breakdown of its typical columns
+This file contains demographic and personal information about the patients. Here’s a breakdown of its typical columns:
 
 - **Name (VARCHAR(255))**: The first name of the patient.
 - **Family (VARCHAR(255))**: The family name or surname of the patient.
